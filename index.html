@@ -156,8 +156,9 @@
 
       let v = Uint16Array.of(document.querySelector('#input').value);
       Char1_data[0]=document.querySelector('#input').value;
-      console.log(Char1_data);
-      myCharacteristic.writeValue(Char1_data)
+      data_8 = new Uint8Array(Char1_data.buffer, Char1_data.byteOffset, Char1_data.byteLength);
+      console.log(data_8);
+      myCharacteristic.writeValue(data_8)
         .then(_ => {
           log('☜╮__ data transmitted, now value is ' + v);
         })
