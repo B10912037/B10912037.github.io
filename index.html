@@ -194,21 +194,21 @@
       document.querySelector('#adc').innerText = va.toFixed(0) + "下";
       //document.querySelector('#adc').innerText = volt.toFixed(2) + "V";
       // document.querySelector('#adc').classList.;
-      if(volt<1)
+      if(va<100)
       {
         document.querySelector('#adc').classList.remove("btn-info");
         document.querySelector('#adc').classList.remove("btn-warning");
         document.querySelector('#adc').classList.remove("btn-danger");
         document.querySelector('#adc').classList.add("btn-success");
       }
-      else if(volt>=1 & volt<2)
+      else if(va>=100 & va<200)
       {
         document.querySelector('#adc').classList.remove("btn-success");
         document.querySelector('#adc').classList.remove("btn-warning");
         document.querySelector('#adc').classList.remove("btn-danger");
         document.querySelector('#adc').classList.add("btn-info");
       }
-      else if(volt>=2 & volt<3)
+      else if(va>=200 & va<300)
       {
         document.querySelector('#adc').classList.remove("btn-success");
         document.querySelector('#adc').classList.remove("btn-info");
