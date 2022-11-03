@@ -149,12 +149,13 @@
         return;
 
       let v = Uint16Array.of(document.querySelector('#input').value);
-      log(v);
+      console.log(v);
       myCharacteristic.writeValue(v)
         .then(_ => {
           log('☜╮__ data transmitted, now value is ' + v);
         })
         .catch(error => {
+          console.log(error);
           log(error);
         });
     }
