@@ -149,6 +149,7 @@
         return;
 
       let v = Uint16Array.of(document.querySelector('#input').value);
+      log(v);
       myCharacteristic.writeValue(v)
         .then(_ => {
           log('☜╮__ data transmitted, now value is ' + v);
@@ -309,7 +310,7 @@
         <br>
         <button id='adc' type="button" class="btn btn-lg btn-block">計數</button>
         <br>
-        <input  id="input" type="text" class="form-control" value=0810 placeholder="輸入 40~99" readonly=true>
+        <input  id="input" type="text" class="form-control" value=70 placeholder="輸入 40~99" readonly=true>
         <br>
         <button id='show' type="button" class="btn btn-lg btn-block">設定閥值</button>
         <br>
