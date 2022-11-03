@@ -38,9 +38,9 @@
       log('Requesting any Bluetooth Device...');
       navigator.bluetooth.requestDevice({
          //filters: [...] <- Prefer filters to save energy & show relevant devices.
-        //filters: [{name: 'WebBluetooth' }],
-        acceptAllDevices : true
-        //optionalServices: [_serv_uuid]
+        filters: [{name: 'WebBluetooth' }],
+        //acceptAllDevices : true
+        optionalServices: [_serv_uuid]
       })
         .then(device => {
           log('Connecting to GATT Server...');
