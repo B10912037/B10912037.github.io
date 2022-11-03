@@ -23,6 +23,7 @@
     var StatusValue;
     var notified = false;
     var myCharacteristic;
+    const Char1_data = new Uint16Array(2);
 
     function log(v) {
       var line = Array.prototype.slice.call(arguments).map(function (argument) {
@@ -149,8 +150,9 @@
         return;
 
       let v = Uint16Array.of(document.querySelector('#input').value);
-      console.log(v);
-      myCharacteristic.writeValue(v)
+      Char1_data[0]=document.querySelector('#input').value;
+      console.log(Char1_data);
+      myCharacteristic.writeValue(Char1_data)
         .then(_ => {
           log('☜╮__ data transmitted, now value is ' + v);
         })
@@ -192,6 +194,7 @@
       let v1=value.getUint8(2);
       let v2=value.getUint8(3);
       let va=v1+v2*0x100;
+      Char1_data[1]=va;
       //let volt = va / 4095 * 3.3;
       document.querySelector('#adc').innerText = va.toFixed(0) + "下";
       //document.querySelector('#adc').innerText = volt.toFixed(2) + "V";
