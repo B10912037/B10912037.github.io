@@ -157,11 +157,28 @@
 
       let v = Uint16Array.of(document.querySelector('#input').value);
       Char1_data[0]=document.querySelector('#input').value;
-      let arrayBuf = new Uint16Array(Char1_data).buffer;
+      let arrayBuf = new Uint16Array(v).buffer;
+      let arr2 = new Uint16Array(4);
+      arr2[0]=Char1_data[0];
       console.log(arrayBuf);
-      myCharacteristic.writeValueWithResponse(v)
+      myCharacteristic.writeValueWithResponse(arr2)
         .then(_ => {
           log('☜╮__ data transmitted, now value is ' + v);
+        })
+        .catch(error => {
+          console.log(error);
+          log(error);
+        });
+    }
+
+    function _read() {
+      if (!connected)
+        return;
+
+      myCharacteristic.readValue()
+        .then(value => {
+          value = value.buffer ? value : new DataView(value);
+          console.log(value); //value.getUint8(0)
         })
         .catch(error => {
           console.log(error);
@@ -198,13 +215,30 @@
       // else
       //   document.querySelector('#toggle').classList.remove("btn-primary");
       // log('__╭☞ data received, new value is ' + value.getUint8(0));
-      console.log(value);
-      let v1=value.getUint8(2);
-      let v2=value.getUint8(3);
-      let va=v1+v2*0x100;
-      Char1_data[1]=va;
+      // console.log(value);
+      // let va=value.getInt32(0);
+       let f=1,count=0,cnt=0;
+       let v1=value.getUint8(0);
+       let v2=value.getUint8(1);
+       let v3=value.getUint8(2);
+       let v4=value.getUint8(3);
+       let va=v1+v2*0x100+v3*0x10000+v4*0x1000000;
+      if(va>pressure && f==1 && ++cnt>5)
+        g++;
+      if(va<6200000 && va>5200000 && f==1)
+        g=1;
+      if(g%3==0)
+      {
+        count++;
+        f=0;
+        g=1;
+      }
+      if(va<7000000 && va>5200000 && f==0)
+        f=1;
+
+      //Char1_data[1]=va;
       //let volt = va / 4095 * 3.3;
-      document.querySelector('#adc').innerText = va.toFixed(0) + "下";
+      document.querySelector('#adc').innerText = count.toFixed(0) + "下";
       //document.querySelector('#adc').innerText = volt.toFixed(2) + "V";
       // document.querySelector('#adc').classList.;
       if(va<100)
@@ -246,6 +280,7 @@
         document.querySelector('#notify').classList.add("disabled");
         $('input').attr('readonly', true);
         document.querySelector('#show').classList.add("disabled");
+        document.querySelector('#read').classList.add("disabled");
         document.querySelector('#adc').classList.add("disabled");
         $("#toggle").hide();
         // document.querySelector('#toggle').classList.add("disabled");
@@ -261,6 +296,9 @@
         document.querySelector('#show').onclick = _show;
         document.querySelector('#show').classList.remove("disabled");
         document.querySelector('#show').classList.add("btn-primary");
+        document.querySelector('#read').onclick = _read;
+        document.querySelector('#read').classList.remove("disabled");
+        document.querySelector('#read').classList.add("btn-primary");
         document.querySelector('#adc').classList.remove("disabled");
         document.querySelector('#adc').classList.add("btn-info");
         document.querySelector('#state').innerText = "Connected";
@@ -291,6 +329,8 @@
         $('input').attr('value', '');
         document.querySelector('#show').classList.add("disabled");
         document.querySelector('#show').classList.remove("btn-primary");
+        document.querySelector('#read').classList.add("disabled");
+        document.querySelector('#read').classList.remove("btn-primary");
         document.querySelector('#adc').classList.add("disabled");
         document.querySelector('#adc').classList.remove("btn-info");
       }
@@ -325,6 +365,8 @@
         <input  id="input" type="text" class="form-control" value=70 placeholder="輸入 40~99" readonly=true>
         <br>
         <button id='show' type="button" class="btn btn-lg btn-block">設定閥值</button>
+        <br>
+        <button id='read' type="button" class="btn btn-lg btn-block">Read</button>
         <br>
         <button id='toggle' type="button" class="btn btn-lg btn-block">Value</button>
         <br>
