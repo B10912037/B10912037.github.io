@@ -61,7 +61,7 @@
           return service.getCharacteristic(_char_uuid);
         })
         .then(characteristic => {
-          //log('Reading Characteristic values...');
+          log('Reading Characteristic values...');
           myCharacteristic = characteristic;
           return characteristic.readValue();
         })
@@ -75,7 +75,7 @@
           let v4=value.getUint8(1);
           let vt=v3+v4*0x100;
           Char1_data[1]=vt;
-          //$('input').attr('value', va);
+          $('input').attr('value', va);
           log('Reading Characteristic values... Value is ' + count);
           connected = true;
           //StatusValue = value.getUint8(0);
