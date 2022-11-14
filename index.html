@@ -76,7 +76,8 @@
           let vt=v3+v4*0x100;
           Char1_data[1]=vt;
           $('input').attr('value', va);
-          log('Reading Characteristic values... Value is ' + count);
+          va = count;
+          log('Reading Characteristic values... Value is ' + va);
           connected = true;
           //StatusValue = value.getUint8(0);
           log('Starting notifications...');
@@ -185,7 +186,8 @@
       myCharacteristic.readValue()
         .then(value => {
           value = value.buffer ? value : new DataView(value);
-          console.log(count); //value.getUint8(0)
+          value = count;
+          console.log(value); //value.getUint8(0)
         })
         .catch(error => {
           console.log(error);
