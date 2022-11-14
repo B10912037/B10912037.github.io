@@ -224,7 +224,7 @@
        let v3=value.getUint8(2);
        let v4=value.getUint8(3);
        let va=v1+v2*0x100+v3*0x10000+v4*0x1000000;
-      if(va>pressure && f==1 && ++cnt>5)
+     /* if(va>pressure && f==1 && ++cnt>5)
         g++;
       if(va<6200000 && va>5200000 && f==1)
         g=1;
@@ -236,7 +236,7 @@
       }
       if(va<7000000 && va>5200000 && f==0)
         f=1;
-
+*/
       //Char1_data[1]=va;
       //let volt = va / 4095 * 3.3;
       document.querySelector('#adc').innerText = va.toFixed(0) + "下";
