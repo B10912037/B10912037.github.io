@@ -26,6 +26,7 @@
     var cnt=0;
     var count = 0;
     var g=1;
+    var f=1;
     var pressure = 7000000;
     const Char1_data = new Uint16Array(2);
 
@@ -227,7 +228,7 @@
       // log('__╭☞ data received, new value is ' + value.getUint8(0));
       // console.log(value);
       // let va=value.getInt32(0);
-       let f=1;
+       
        let v1=value.getUint8(0);
        let v2=value.getUint8(1);
        let v3=value.getUint8(2);
@@ -243,7 +244,7 @@
         f=0;
         g=1;
       }
-      if(va<7000000 & va>4500000 & f==0)
+      if(va<6500000 & va>4500000 & f==0)
         f=1;
 
       //Char1_data[1]=va;
