@@ -66,8 +66,8 @@
           return characteristic.readValue();
         })
         .then(value => {
-          console.log(value);
-          let v1=value.getUint8(0);
+          //console.log(value);
+          /*let v1=value.getUint8(0);
           let v2=value.getUint8(1);
           let va=v1+v2*0x100;
           Char1_data[0]=va;
@@ -76,13 +76,13 @@
           let vt=v3+v4*0x100;
           Char1_data[1]=vt;
           $('input').attr('value', va);
-          va = count;
-          console.log('Reading Characteristic values... Value is ' + va);
+          va = count;*/
+          log('Reading Characteristic values... Value is ' + 10);
           connected = true;
           //StatusValue = value.getUint8(0);
           log('Starting notifications...');
           return myCharacteristic.startNotifications();
-        })
+        })  
         .then(_ => {
           document.querySelector('#notify').innerText = "Receiving";
           document.querySelector('#notify').classList.add("disabled");
