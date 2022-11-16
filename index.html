@@ -23,11 +23,6 @@
     var StatusValue;
     var notified = false;
     var myCharacteristic;
-    var cnt=0;
-    var count = 0;
-    var g=1;
-    var f=1;
-    var pressure = 7000000;
     const Char1_data = new Uint16Array(2);
 
     function log(v) {
@@ -63,13 +58,13 @@
           return service.getCharacteristic(_char_uuid);
         })
         .then(characteristic => {
-          log('Reading Characteristic values...');
+          //log('Reading Characteristic values...');
           myCharacteristic = characteristic;
           return characteristic.readValue();
         })
         .then(value => {
-          //console.log(value);
-          /*let v1=value.getUint8(0);
+          console.log(value);
+          let v1=value.getUint8(0);
           let v2=value.getUint8(1);
           let va=v1+v2*0x100;
           Char1_data[0]=va;
@@ -78,13 +73,12 @@
           let vt=v3+v4*0x100;
           Char1_data[1]=vt;
           $('input').attr('value', va);
-          va = count;*/
-          log('Reading Characteristic values... Value is ' + 10);
+          log('Reading Characteristic values... Value is ' + va);
           connected = true;
-          //StatusValue = value.getUint8(0);
+          StatusValue = value.getUint8(0);
           log('Starting notifications...');
           return myCharacteristic.startNotifications();
-        })  
+        })
         .then(_ => {
           document.querySelector('#notify').innerText = "Receiving";
           document.querySelector('#notify').classList.add("disabled");
@@ -133,13 +127,13 @@
       if (!connected)
         return;
 
-      /*StatusValue = StatusValue == 0 ? 1 : 0;
+      StatusValue = StatusValue == 0 ? 1 : 0;
       document.querySelector('#toggle').innerText = StatusValue;
       if (StatusValue)
         document.querySelector('#toggle').classList.add("btn-primary");
       else
         document.querySelector('#toggle').classList.remove("btn-primary");
-*/
+
       _send();
     }
 
@@ -150,9 +144,7 @@
       var v = Uint8Array.of(7);
       myCharacteristic.writeValue(v)
         .then(_ => {
-          //pressure = StatusValue*100000+6000000;
-          log('☜╮__ data transmitted, now value is ' + pressure);
-       // log('☜╮__ data transmitted, now value is ' + StatusValue);
+          log('☜╮__ data transmitted, now value is ' + StatusValue);
         })
         .catch(error => {
           log(error);
@@ -164,16 +156,14 @@
         return;
 
       let v = Uint16Array.of(document.querySelector('#input').value);
-      //Char1_data[0]=document.querySelector('#input').value;
       Char1_data[0]=document.querySelector('#input').value;
-      //pressure = Char1_data[0]**100000+6000000;
       let arrayBuf = new Uint16Array(v).buffer;
-      let arr2 = new Uint16Array(4);
+      let arr2 = new Uint16Array(2);
       arr2[0]=Char1_data[0];
       console.log(arrayBuf);
       myCharacteristic.writeValueWithResponse(arr2)
         .then(_ => {
-          log('☜╮__ data transmitted, now value is ' + pressure);
+          log('☜╮__ data transmitted, now value is ' + v);
         })
         .catch(error => {
           console.log(error);
@@ -188,7 +178,6 @@
       myCharacteristic.readValue()
         .then(value => {
           value = value.buffer ? value : new DataView(value);
-          value = count;
           console.log(value); //value.getUint8(0)
         })
         .catch(error => {
@@ -227,29 +216,12 @@
       //   document.querySelector('#toggle').classList.remove("btn-primary");
       // log('__╭☞ data received, new value is ' + value.getUint8(0));
       // console.log(value);
-      // let va=value.getInt32(0);
-       
-       let v1=value.getUint8(0);
-       let v2=value.getUint8(1);
-       let v3=value.getUint8(2);
-       let v4=value.getUint8(3);
-       let va=v1+v2*0x100+v3*0x10000+v4*0x1000000;
-      if(va>pressure & f==1 & ++cnt>5)
-        g++;
-      if(va<6000000 & va>4500000 & f==1)
-        g=1;
-      if(g%3==0)
-      {
-        count++;
-        f=0;
-        g=1;
-      }
-      if(va<6500000 & va>4500000 & f==0)
-        f=1;
-
-      //Char1_data[1]=va;
+      let v1=value.getUint8(2);
+      let v2=value.getUint8(3);
+      let va=v1+v2*0x100;
+      Char1_data[1]=va;
       //let volt = va / 4095 * 3.3;
-      document.querySelector('#adc').innerText = count.toFixed(0) + "下";
+      document.querySelector('#adc').innerText = va.toFixed(0) + "下";
       //document.querySelector('#adc').innerText = volt.toFixed(2) + "V";
       // document.querySelector('#adc').classList.;
       if(va<100)
@@ -373,7 +345,7 @@
         <br>
         <button id='adc' type="button" class="btn btn-lg btn-block">計數</button>
         <br>
-        <input  id="input" type="text" class="form-control" value=10 placeholder="輸入 1~60" readonly=true>
+        <input  id="input" type="text" class="form-control" value=70 placeholder="輸入 40~99" readonly=true>
         <br>
         <button id='show' type="button" class="btn btn-lg btn-block">設定閥值</button>
         <br>
@@ -397,3 +369,4 @@
 </body>
 
 </html>
+
