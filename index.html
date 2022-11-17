@@ -127,13 +127,13 @@
       if (!connected)
         return;
 
-      /*StatusValue = StatusValue == 0 ? 1 : 0;
+      StatusValue = StatusValue == 0 ? 1 : 0;
       document.querySelector('#toggle').innerText = StatusValue;
       if (StatusValue)
         document.querySelector('#toggle').classList.add("btn-primary");
       else
         document.querySelector('#toggle').classList.remove("btn-primary");
-*/
+
       _send();
     }
 
@@ -141,14 +141,13 @@
       if (!connected)
         return;
       let v = Uint8Array.of(document.querySelector('#input').value);
-      characteristic.writeValue(
-      new Uint8Array([v]));
+      characteristic.writeValue(new Uint8Array([v]));
       //var v = Uint8Array.of(7);
       //myCharacteristic.writeValue(v)
       //var v = Uint8Array.of(0);
       //Characteristic.writeValue(v)
         .then(_ => {
-          log('☜╮__ data transmitted, now value is ' + v);
+          log('☜╮__ data transmitted, now value is ' + StatusValue);
         })
         .catch(error => {
           log(error);
