@@ -127,13 +127,13 @@
       if (!connected)
         return;
 
-      StatusValue = StatusValue == 0 ? 1 : 0;
+      /*StatusValue = StatusValue == 0 ? 1 : 0;
       document.querySelector('#toggle').innerText = StatusValue;
       if (StatusValue)
         document.querySelector('#toggle').classList.add("btn-primary");
       else
         document.querySelector('#toggle').classList.remove("btn-primary");
-
+*/
       _send();
     }
 
@@ -141,8 +141,10 @@
       if (!connected)
         return;
 
+      //var v = Uint8Array.of(7);
+      //myCharacteristic.writeValue(v)
       var v = Uint8Array.of(7);
-      myCharacteristic.writeValue(v)
+      Characteristic.writeValue(v)
         .then(_ => {
           log('☜╮__ data transmitted, now value is ' + StatusValue);
         })
@@ -207,8 +209,7 @@
     }
 
     function handleNotifications(event) {
-      let value = event.target.value;
-      // StatusValue = value.getUint8(0);
+x      // StatusValue = value.getUint8(0);
       // document.querySelector('#toggle').innerText = StatusValue;
       // if (StatusValue)
       //   document.querySelector('#toggle').classList.add("btn-primary");
@@ -238,7 +239,7 @@
         document.querySelector('#adc').classList.remove("btn-danger");
         document.querySelector('#adc').classList.add("btn-info");
       }
-      else if(va>=200 & va<300)
+      else if(va>=200 & va<500)
       {
         document.querySelector('#adc').classList.remove("btn-success");
         document.querySelector('#adc').classList.remove("btn-info");
