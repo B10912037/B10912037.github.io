@@ -140,8 +140,8 @@
     function _send() {
       if (!connected)
         return;
-      let v = Uint8Array.of(document.querySelector('#input').value);
-
+      //let v = Uint8Array.of(document.querySelector('#input').value);
+      let v = document.getElementById("input")
       //var v = Uint8Array.of(7);
       //myCharacteristic.writeValue(v)
       //var v = Uint8Array.of(0);
