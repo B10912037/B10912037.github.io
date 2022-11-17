@@ -140,14 +140,15 @@
     function _send() {
       if (!connected)
         return;
-
+      let v = Uint8Array.of(document.querySelector('#input').value);
+      characteristic.writeValue(
+      new Uint8Array([v]));
       //var v = Uint8Array.of(7);
       //myCharacteristic.writeValue(v)
-      let v = Uint8Array.of(document.querySelector('#input').value);
       //var v = Uint8Array.of(0);
-      Characteristic.writeValue(v)
+      //Characteristic.writeValue(v)
         .then(_ => {
-          log('☜╮__ data transmitted, now value is ' + StatusValue);
+          log('☜╮__ data transmitted, now value is ' + v);
         })
         .catch(error => {
           log(error);
