@@ -141,13 +141,11 @@
       if (!connected)
         return;
       let v = Uint8Array.of(document.querySelector('#input').value);
-      characteristic.writeValue(
-        new Uint8Array(v)
-      );
+
       //var v = Uint8Array.of(7);
       //myCharacteristic.writeValue(v)
       //var v = Uint8Array.of(0);
-      //Characteristic.writeValue(v)
+      Characteristic.writeValue(v)
         .then(_ => {
           log('☜╮__ data transmitted, now value is ' + StatusValue);
         })
