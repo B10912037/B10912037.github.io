@@ -141,7 +141,9 @@
       if (!connected)
         return;
       let v = Uint8Array.of(document.querySelector('#input').value);
-      characteristic.writeValue(new Uint8Array([v]));
+      characteristic.writeValue(
+        new Uint8Array(v)
+      );
       //var v = Uint8Array.of(7);
       //myCharacteristic.writeValue(v)
       //var v = Uint8Array.of(0);
@@ -347,7 +349,7 @@ x      // StatusValue = value.getUint8(0);
         <br>
         <button id='adc' type="button" class="btn btn-lg btn-block">計數</button>
         <br>
-        <input  id="input" type="text" class="form-control" value=70 placeholder="輸入 40~99" readonly=true>
+        <input  id="input" type="text" class="form-control" value=10 placeholder="輸入 1~50" readonly=true>
         <br>
         <button id='show' type="button" class="btn btn-lg btn-block">設定閥值</button>
         <br>
