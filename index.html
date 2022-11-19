@@ -23,7 +23,8 @@
     var StatusValue;
     var notified = false;
     var myCharacteristic;
-    const Char1_data = new Uint16Array(2);
+    var count=0;
+    var Char1_data = new Uint16Array(2);
 
     function log(v) {
       var line = Array.prototype.slice.call(arguments).map(function (argument) {
@@ -158,13 +159,14 @@
       if (!connected)
         return;
 
-      let v = Uint16Array.of(document.querySelector('#input').value);
-      Char1_data[0]=document.querySelector('#input').value;
+      let v = Uint8Array.of(document.querySelector("#input").value);
+      
+      Char1_data[0]=document.querySelector("#input").value;
       let arrayBuf = new Uint16Array(v).buffer;
       let arr2 = new Uint16Array(2);
       arr2[0]=Char1_data[0];
       console.log(arrayBuf);
-      myCharacteristic.writeValueWithResponse(arr2)
+      myCharacteristic.writeValue(arr2)
         .then(_ => {
           log('☜╮__ data transmitted, now value is ' + v);
         })
@@ -210,7 +212,7 @@
     }
 
     function handleNotifications(event) {
-x      // StatusValue = value.getUint8(0);
+      // StatusValue = value.getUint8(0);
       // document.querySelector('#toggle').innerText = StatusValue;
       // if (StatusValue)
       //   document.querySelector('#toggle').classList.add("btn-primary");
