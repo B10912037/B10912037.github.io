@@ -164,10 +164,11 @@
       
       Char1_data[0]=document.querySelector('#input').value;
       let arrayBuf = new Uint16Array(v).buffer;
+      arrayBuf = Char1_data[0];
       //let arr2 = new Uint16Array(2);
       //arr2[0]=Char1_data[0];
       console.log(arrayBuf);
-      myCharacteristic.writeValueWithResponse(Char1_data[0])
+      myCharacteristic.writeValueWithResponse(arrayBuf)
       
         .then(_ => {
           log('☜╮__ data transmitted, now value is ' + v);
