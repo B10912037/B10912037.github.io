@@ -65,8 +65,8 @@
         })
         .then(value => {
           console.log(value);
-          let v1=value.getUint8(0);
-          let v2=value.getUint8(1);
+          let v1=value.getUint8(2);
+          let v2=value.getUint8(3);
           let va=v1+v2*0x100;
           Char1_data[0]=va;
           let v3=value.getUint8(0);
@@ -159,7 +159,8 @@
       if (!connected)
         return;
 
-      let v = Uint8Array.of(document.querySelector("#input").value);
+      //let v = Uint8Array.of(document.querySelector("#input").value);
+      let v = document.querySelector("#input").value;
       
       Char1_data[0]=document.querySelector("#input").value;
       let arrayBuf = new Uint16Array(v).buffer;
@@ -167,6 +168,7 @@
       arr2[0]=Char1_data[0];
       console.log(arrayBuf);
       myCharacteristic.writeValue(arr2)
+      log('☜╮__ data transmitted, now value is ' + v);
         .then(_ => {
           log('☜╮__ data transmitted, now value is ' + v);
         })
