@@ -159,10 +159,10 @@
       if (!connected)
         return;
 
-      let v = Uint16Array.of(document.querySelector("#input").value);
+      let v = Uint16Array.of(document.querySelector('#input').value);
       
       
-      Char1_data[0]=document.querySelector("#input").value;
+      Char1_data[0]=document.querySelector('#input').value;
       let arrayBuf = new Uint16Array(v).buffer;
       let arr2 = new Uint16Array(4);
       arr2[0]=Char1_data[0];
