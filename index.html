@@ -167,7 +167,8 @@
       //let arr2 = new Uint16Array(2);
       arr2[0]=Char1_data[0];
       console.log(arrayBuf);
-      myCharacteristic.writeValue(arr2)
+      BluetoothRemoteGATTCharacteristic.writeValueWithResponse(arr2)
+      //myCharacteristic.writeValue(arr2)
       
       
         .then(_ => {
@@ -215,6 +216,7 @@
     }
 
     function handleNotifications(event) {
+      let value = event.target.value;
       // StatusValue = value.getUint8(0);
       // document.querySelector('#toggle').innerText = StatusValue;
       // if (StatusValue)
