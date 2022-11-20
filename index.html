@@ -177,10 +177,10 @@
         //.then(_ => {
           log('☜╮__ data transmitted, now value is ' + v);
        // })
-        .catch(error => {
+       /* .catch(error => {
           console.log(error);
           log(error);
-        });
+        });*/
       return characteristic.writeValue(resetEnergyExpended);
     }
 
