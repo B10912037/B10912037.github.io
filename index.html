@@ -56,7 +56,7 @@
         })
         .then(service => {
           log('Getting Characteristic...');
-          characteristic = await service.getCharacteristic(_char_uuid);
+          characteristic = service.getCharacteristic(_char_uuid);
           return service.getCharacteristic(_char_uuid);
         })
         .then(characteristic => {
