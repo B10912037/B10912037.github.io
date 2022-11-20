@@ -172,7 +172,7 @@
       //Characteristic.writeValueWithoutResponse(arr2)
       //Characteristic.writeValue([1])
       const resetEnergyExpended = Uint8Array.of(1);
-      characteristic.writeValue(resetEnergyExpended);
+      mycharacteristic.writeValue(resetEnergyExpended);
       
         //.then(_ => {
           log('☜╮__ data transmitted, now value is ' + v);
@@ -181,7 +181,6 @@
           console.log(error);
           log(error);
         });*/
-      return characteristic.writeValue(resetEnergyExpended);
     }
 
     function _read() {
