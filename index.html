@@ -235,7 +235,7 @@
       let v1=value.getUint8(2);
       let v2=value.getUint8(3);
       let va=v1+v2*0x100;
-      Char1_data[1]=va;
+      Char1_data[2]=va;
       //let volt = va / 4095 * 3.3;
       document.querySelector('#adc').innerText = va.toFixed(0) + "下";
       //document.querySelector('#adc').innerText = volt.toFixed(2) + "V";
