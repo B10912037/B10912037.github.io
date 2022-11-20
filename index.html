@@ -160,11 +160,13 @@
         return;
 
       //let v = Uint16Array.of(document.querySelector('#input').value);
-      let v = Uint16Array(2);
+      let v = new Uint16Array(2);
       v[0] = document.querySelector('#input').value;
       Char1_data[0]=document.querySelector('#input').value;
       let arrayBuf = new Uint16Array(v).buffer;
       var arr2 = new ArrayBuffer(4);
+      
+      //var aBuffer = new ArrayBuffer(bytes);
       //var dataView = new DataView(aBuffer);
       //dataView.setUint32(0, 97);
       
