@@ -166,12 +166,14 @@
       Char1_data[0]=document.querySelector('#input').value;
       let arrayBuf = new Uint16Array(v).buffer;
       var arr2 = new ArrayBuffer(4);
-  
+      var buffer = new ArrayBuffer(2);
+      var view   = new Int8Array(buffer);
+      view[0] = Char1_data[0];
       //let arr2 = new Unit8Array(2).buffer;
       //let arr2 = new Uint16Array(2);
       arr2[0]=Char1_data[0];
       console.log(arrayBuf);
-      myCharacteristic.writeValue(v)
+      myCharacteristic.writeValue(view)
       //Characteristic.writeValueWithResponse(arr2)
       
       
