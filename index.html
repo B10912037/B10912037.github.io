@@ -168,7 +168,9 @@
       arr2[0]=Char1_data[0];
       console.log(arrayBuf);
      
-      myCharacteristic.writeValue(arr2)
+      //myCharacteristic.writeValue(arr2)
+      Characteristic.writeValueWithoutResponse(arr2)
+      //Characteristic.writeValue([1])
       
       
         .then(_ => {
