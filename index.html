@@ -167,8 +167,8 @@
       //let arr2 = new Uint16Array(2);
       arr2[0]=Char1_data[0];
       console.log(arrayBuf);
-      BluetoothRemoteGATTCharacteristic.writeValueWithResponse(arr2)
-      //myCharacteristic.writeValue(arr2)
+     
+      myCharacteristic.writeValue(arr2)
       
       
         .then(_ => {
