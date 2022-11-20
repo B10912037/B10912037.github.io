@@ -167,9 +167,9 @@
       //let arr2 = new Uint16Array(2);
       arr2[0]=Char1_data[0];
       console.log(arrayBuf);
-      //myCharacteristic.writeValue(arr2)
-      Characteristic.writeValueWithResponse(arr2)
-      //Characteristic.writeValue([1])
+      myCharacteristic.writeValue(arr2)
+      //Characteristic.writeValueWithResponse(arr2)
+      
       
         .then(_ => {
           log('☜╮__ data transmitted, now value is ' + v);
