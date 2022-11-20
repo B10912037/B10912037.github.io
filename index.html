@@ -171,7 +171,7 @@
       //myCharacteristic.writeValue(arr2)
       //Characteristic.writeValueWithoutResponse(arr2)
       //Characteristic.writeValue([1])
-      const resetEnergyExpended = Uint8Array.of(1);
+      const resetEnergyExpended = Uint8Array.of([1]);
       mycharacteristic.writeValue(resetEnergyExpended)
       
         //.then(_ => {
