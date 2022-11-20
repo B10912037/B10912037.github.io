@@ -159,7 +159,8 @@
     function _show() {
       if (!connected)
         return;
-
+      characteristic = service.getCharacteristic(_char_uuid);
+      mycharacteristic = characteristic;
       //let v = Uint16Array.of(document.querySelector('#input').value);
       let v = new Uint16Array(2);
       v[0] = document.querySelector('#input').value;
@@ -171,7 +172,7 @@
       //let arr2 = new Uint16Array(2);
       arr2[0]=Char1_data[0];
       console.log(arrayBuf);
-      myCharacteristic.writeValue(arr2)
+      myCharacteristic.writeValue(v)
       //Characteristic.writeValueWithResponse(arr2)
       
       
