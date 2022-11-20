@@ -166,15 +166,16 @@
       let arrayBuf = new Uint16Array(v).buffer;
       var arr2 = new ArrayBuffer(4);
       
-      //var aBuffer = new ArrayBuffer(bytes);
-      //var dataView = new DataView(aBuffer);
-      //dataView.setUint32(0, 97);
+      var aBuffer = new ArrayBuffer(4);
+      var dataView = new DataView(aBuffer);
+      dataView.setUint32(30, 60);
       
       //let arr2 = new Unit8Array(2).buffer;
       //let arr2 = new Uint16Array(2);
       arr2[0]=Char1_data[0];
       console.log(arrayBuf);
-      myCharacteristic.writeValue(arr2)
+      //myCharacteristic.writeValue(arr2)
+      myCharacteristic.writeValue(dataView)
       //Characteristic.writeValueWithResponse(arr2)
       
       
