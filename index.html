@@ -56,6 +56,7 @@
         })
         .then(service => {
           log('Getting Characteristic...');
+          characteristic = await service.getCharacteristic(_char_uuid);
           return service.getCharacteristic(_char_uuid);
         })
         .then(characteristic => {
@@ -170,9 +171,7 @@
       //let arr2 = new Uint16Array(2);
       arr2[0]=Char1_data[0];
       console.log(arrayBuf);
-      //myCharacteristic.writeValue(arr2)
-      //myCharacteristic.writeValue(arr2)
-      myCharacteristic.writeValue(new Uint8Array[0,'r','g','b'])
+      myCharacteristic.writeValue(arr2)
       //Characteristic.writeValueWithResponse(arr2)
       
       
