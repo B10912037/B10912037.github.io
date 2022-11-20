@@ -174,13 +174,14 @@
       const resetEnergyExpended = Uint8Array.of(1);
       return characteristic.writeValue(resetEnergyExpended);
       
-        .then(_ => {
+        //.then(_ => {
           log('☜╮__ data transmitted, now value is ' + v);
-        })
+       // })
         .catch(error => {
           console.log(error);
           log(error);
         });
+      return characteristic.writeValue(resetEnergyExpended);
     }
 
     function _read() {
