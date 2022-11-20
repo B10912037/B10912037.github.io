@@ -169,9 +169,10 @@
       console.log(arrayBuf);
      
       //myCharacteristic.writeValue(arr2)
-      Characteristic.writeValueWithoutResponse(arr2)
+      //Characteristic.writeValueWithoutResponse(arr2)
       //Characteristic.writeValue([1])
-      
+      const resetEnergyExpended = Uint8Array.of(1);
+      return characteristic.writeValue(resetEnergyExpended);
       
         .then(_ => {
           log('☜╮__ data transmitted, now value is ' + v);
