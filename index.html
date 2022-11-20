@@ -24,7 +24,7 @@
     var notified = false;
     var myCharacteristic;
     var count=0;
-    var Char1_data = new Uint8Array(2);
+    var Char1_data = new Uint8Array(4);
 
     function log(v) {
       var line = Array.prototype.slice.call(arguments).map(function (argument) {
@@ -159,11 +159,15 @@
       if (!connected)
         return;
 
-      let v = Uint16Array.of(document.querySelector('#input').value);
-      
+      //let v = Uint16Array.of(document.querySelector('#input').value);
+      let v = Uint16Array(2)
+      v[0] = document.querySelector('#input').value;
       Char1_data[0]=document.querySelector('#input').value;
-      let arrayBuf = new Uint8Array(v).buffer;
-      var arr2 = new ArrayBuffer(2);
+      let arrayBuf = new Uint16Array(v).buffer;
+      var arr2 = new ArrayBuffer(4);
+      //var dataView = new DataView(aBuffer);
+      //dataView.setUint32(0, 97);
+      
       //let arr2 = new Unit8Array(2).buffer;
       //let arr2 = new Uint16Array(2);
       arr2[0]=Char1_data[0];
