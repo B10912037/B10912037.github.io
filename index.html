@@ -57,6 +57,7 @@
         .then(service => {
           log('Getting Characteristic...');
           characteristic = service.getCharacteristic(_char_uuid);
+        
           return service.getCharacteristic(_char_uuid);
         })
         .then(characteristic => {
@@ -159,8 +160,6 @@
     function _show() {
       if (!connected)
         return;
-      characteristic = service.getCharacteristic(_char_uuid);
-      mycharacteristic = characteristic;
       //let v = Uint16Array.of(document.querySelector('#input').value);
       let v = new Uint16Array(2);
       v[0] = document.querySelector('#input').value;
