@@ -190,10 +190,10 @@
       if (!connected)
         return;
 
-      myCharacteristic.readValue(value)
+      myCharacteristic.readValue()
         .then(value => {
           value = value.buffer ? value : new DataView(value);
-          log(value); //value.getUint8(0)
+          log(value.getUint8(0)); //value.getUint8(0)
         })
         .catch(error => {
           console.log(error);
