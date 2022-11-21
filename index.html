@@ -193,7 +193,10 @@
       myCharacteristic.readValue()
         .then(value => {
           value = value.buffer ? value : new DataView(value);
-          log(value.getUint8(0)); //value.getUint8(0)
+          let r1=value.getUint8(2);
+          let r2=value.getUint8(3);
+          let ra=r1+r2*0x100;
+          log('Now value is '+ra); //value.getUint8(0)
         })
         .catch(error => {
           console.log(error);
