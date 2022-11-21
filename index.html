@@ -160,9 +160,9 @@
     function _show() {
       if (!connected)
         return;
-      //let v = Uint16Array.of(document.querySelector('#input').value);
-      let v = new Uint16Array(2);
-      v[0] = document.querySelector('#input').value;
+      let v = Uint16Array.of(document.querySelector('#input').value);
+      //let v = new Uint16Array(2);
+      //v[0] = document.querySelector('#input').value;
       Char1_data[0]=document.querySelector('#input').value;
       let arrayBuf = new Uint16Array(v).buffer;
       var arr2 = new ArrayBuffer(4);
@@ -173,7 +173,7 @@
       //let arr2 = new Uint16Array(2);
       arr2[0]=Char1_data[0];
       console.log(arrayBuf);
-      myCharacteristic.writeValue(view)
+      myCharacteristic.writeValue(v)
       //Characteristic.writeValueWithResponse(arr2)
       
       
