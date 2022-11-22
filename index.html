@@ -163,15 +163,15 @@
       let v = Uint8Array.of(document.querySelector('#input').value);
       //let v = new Uint16Array(2);
       //v[0] = document.querySelector('#input').value;
-      Char1_data[0]=document.querySelector('#input').value;
+      /*Char1_data[0]=document.querySelector('#input').value;
       let arrayBuf = new Uint16Array(v).buffer;
       var arr2 = new ArrayBuffer(4);
       var buffer = new ArrayBuffer(2);
       var view   = new Int8Array(buffer);
-      view[0] = Char1_data[0];
+      view[0] = Char1_data[0];*/
       //let arr2 = new Unit8Array(2).buffer;
       //let arr2 = new Uint16Array(2);
-      arr2[0]=Char1_data[0];
+      //arr2[0]=Char1_data[0];
       console.log(arrayBuf);
       myCharacteristic.writeValue(v)
       //Characteristic.writeValueWithResponse(arr2)
@@ -234,15 +234,15 @@
       //   document.querySelector('#toggle').classList.remove("btn-primary");
       // log('__╭☞ data received, new value is ' + value.getUint8(0));
       // console.log(value);
-      let v1=value.getUint8(2);
+      /*let v1=value.getUint8(2);
       let v2=value.getUint8(3);
-      let va=v1+v2*0x100;
+      let va=v1+v2*0x100;*/
       //Char1_data[2]=va;
-      /*let v1=value.getUint8(0);
+      let v1=value.getUint8(0);
       let v2=value.getUint8(1);
       let v3=value.getUint8(2);
       let v4=value.getUint8(3);
-      va = v1+v2*0x100+v3*0x10000+v4*0x1000000*/
+      va = v1+v2*0x100+v3*0x10000+v4*0x1000000
       //let volt = va / 4095 * 3.3;
       document.querySelector('#adc').innerText = va.toFixed(0) + "下";
       //document.querySelector('#adc').innerText = volt.toFixed(2) + "V";
