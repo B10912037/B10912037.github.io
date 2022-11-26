@@ -67,16 +67,16 @@
         })
         .then(value => {
           console.log(value);
-          /*let v1=value.getUint8(2);
-          let v2=value.getUint8(3);
-          let va=v1+v2*0x100;*/
+          let v1=value.getUint8(0);
+          let v2=value.getUint8(1);
+          let va=v1+v2*0x100;
           //Char1_data[2]=va;
-          let v3=value.getUint8(0);
+          /*let v3=value.getUint8(0);
           let v4=value.getUint8(1);
-          let vt=v3+v4*0x100;
+          let vt=v3+v4*0x100;*/
           //Char1_data[1]=vt;
-          //$('input').attr('value', vt);
-          log('Reading Characteristic values... Value is ' + vt);
+          $('input').attr('value', va);
+          log('Reading Characteristic values... Value is ' + va);
           connected = true;
           StatusValue = value.getUint8(0);
           log('Starting notifications...');
@@ -146,7 +146,7 @@
       //let v = Uint8Array.of(document.querySelector('#input').value);
       //let v = document.getElementById("input")
       var v = Uint8Array.of(7);
-      //myCharacteristic.writeValue(v)
+      myCharacteristic.writeValue(v)
       //var v = Uint8Array.of(0);
       //Characteristic.writeValue(v)
         .then(_ => {
