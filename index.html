@@ -75,7 +75,7 @@
           let v4=value.getUint8(1);
           let vt=v3+v4*0x100;
           //Char1_data[1]=vt;
-          $('input').attr('value', vt);
+          //$('input').attr('value', vt);
           log('Reading Characteristic values... Value is ' + vt);
           connected = true;
           StatusValue = value.getUint8(0);
