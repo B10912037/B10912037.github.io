@@ -23,8 +23,8 @@
     var StatusValue;
     var notified = false;
     var myCharacteristic;
-    var count=0;
-    var Char1_data = new Uint8Array(4);
+//    var count=0;
+//    var Char1_data = new Uint8Array(4);
 
     function log(v) {
       var line = Array.prototype.slice.call(arguments).map(function (argument) {
@@ -76,7 +76,7 @@
           let vt=v3+v4*0x100;*/
           //Char1_data[1]=vt;
           $('input').attr('value', va);
-          log('Reading Characteristic values... Value is ' + va);
+          log('Reading Characteristic values... Value is ' + 10);
           connected = true;
           StatusValue = value.getUint8(0);
           log('Starting notifications...');
