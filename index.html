@@ -179,6 +179,8 @@
       
         .then(_ => {
           log('☜╮__ data transmitted, now value is ' + v);
+          if(v>90 || v<1)
+            log('請輸入1~90');
         })
         .catch(error => {
           console.log(error);
