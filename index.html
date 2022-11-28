@@ -179,8 +179,8 @@
       
         .then(_ => {
           log('☜╮__ data transmitted, now value is ' + v);
-          if(v>100 || v<1)
-            log('請輸入1~100');
+          if(v>90 || v<1)
+            log('請輸入1~90');
         })
         .catch(error => {
           console.log(error);
@@ -370,7 +370,7 @@
         <br>
         <button id='adc' type="button" class="btn btn-lg btn-block">計數</button>
         <br>
-        <input  id="input" type="text" class="form-control" value=10 placeholder="輸入 1~100" >
+        <input  id="input" type="text" class="form-control" value=10 placeholder="輸入 1~90" >
         <br>
         <button id='show' type="button" class="btn btn-lg btn-block">設定閥值</button>
         <br>
