@@ -161,6 +161,10 @@
       if (!connected)
         return;
       let v = Uint8Array.of(document.querySelector('#input').value);
+      if(v>100)
+        v = 100;
+      else if (v<1)
+        v = 1;          
       //let v = new Uint16Array(2);
       //v[0] = document.querySelector('#input').value;
       /*Char1_data[0]=document.querySelector('#input').value;
@@ -179,8 +183,8 @@
       
         .then(_ => {
           log('☜╮__ data transmitted, now value is ' + v);
-          if(v>90 || v<1)
-            log('請輸入1~90');
+          if(v>100 || v<1)
+            log('請輸入1~100');
         })
         .catch(error => {
           console.log(error);
@@ -370,7 +374,7 @@
         <br>
         <button id='adc' type="button" class="btn btn-lg btn-block">計數</button>
         <br>
-        <input  id="input" type="text" class="form-control" value=10 placeholder="輸入 1~90" >
+        <input  id="input" type="text" class="form-control" value=10 placeholder="輸入 1~100" >
         <br>
         <button id='show' type="button" class="btn btn-lg btn-block">設定閥值</button>
         <br>
