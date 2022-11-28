@@ -160,11 +160,7 @@
     function _show() {
       if (!connected)
         return;
-      let v = Uint8Array.of(document.querySelector('#input').value);
-      if(v>100)
-        v = 100;
-      else if (v<1)
-        v = 1;          
+      let v = Uint8Array.of(document.querySelector('#input').value);       
       //let v = new Uint16Array(2);
       //v[0] = document.querySelector('#input').value;
       /*Char1_data[0]=document.querySelector('#input').value;
