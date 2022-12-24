@@ -68,18 +68,27 @@
         .then(value => {
           console.log(value);
           let v1=value.getUint8(0);
-          //let v2=value.getUint8(1);
+          let battery=value.getUint8(4);
           let va=v1;
           //Char1_data[2]=va;
           /*let v3=value.getUint8(0);
           let v4=value.getUint8(1);
           let vt=v3+v4*0x100;*/
-          //Char1_data[1]=vt;
+          //Char1_data[1]=vt;      
           $('input').attr('value', va);
-          log('Reading Characteristic values... Value is ' + va);
+          log('目前壓力閥值是 ' + va);
           connected = true;
           StatusValue = value.getUint8(0);
           log('Starting notifications...');
+          if (battery)
+          {
+            log('電量不足 請更換電池');
+          }
+          else
+          {
+            log('電量充足 還可使用');
+          }
+            
           return myCharacteristic.startNotifications();
         })
         .then(_ => {
@@ -178,7 +187,7 @@
       
       
         .then(_ => {
-          log('☜╮__ data transmitted, now value is ' + v);
+          log('☜╮__ 數據更新, 目前壓力閥值為 ' + v);
           if(v>90 || v<1)
             log('請輸入1~90');
         })
@@ -244,6 +253,7 @@
       let v2=value.getUint8(1);
       let v3=value.getUint8(2);
       let v4=value.getUint8(3);
+      let battery=value.getUint8(4);
       va = v1+v2*0x100+v3*0x10000+v4*0x1000000
       //let volt = va / 4095 * 3.3;
       document.querySelector('#adc').innerText = va.toFixed(0) + "下";
@@ -276,6 +286,10 @@
         document.querySelector('#adc').classList.remove("btn-info");
         document.querySelector('#adc').classList.remove("btn-warning");
         document.querySelector('#adc').classList.add("btn-danger");
+      }
+      if (battery)
+      {
+        log('電量不足 請更換電池');
       }
     }
 
