@@ -67,8 +67,7 @@
         })
         .then(value => {
           console.log(value);
-          let v1=value.getUint8(0);
-          let battery=value.getUint8(4);
+          let v1=value.getUint8(0);        
           let va=v1;
           //Char1_data[2]=va;
           /*let v3=value.getUint8(0);
@@ -79,16 +78,7 @@
           log('目前壓力閥值是 ' + va);
           connected = true;
           StatusValue = value.getUint8(0);
-          log('Starting notifications...');
-          if (battery)
-          {
-            log('電量不足 請更換電池');
-          }
-          else
-          {
-            log('電量充足 還可使用');
-          }
-            
+          log('Starting notifications...');           
           return myCharacteristic.startNotifications();
         })
         .then(_ => {
@@ -290,6 +280,10 @@
       if (battery)
       {
         log('電量不足 請更換電池');
+      }
+      else
+      {
+        log('電量充足 還可使用');
       }
     }
 
