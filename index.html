@@ -67,7 +67,8 @@
         })
         .then(value => {
           console.log(value);
-          let battery=value.getUint8(1);        
+          let va=value.getUint8(0);
+          let battery=value.getUint8(1);     
           if (battery)
           {
             log('電量不足 請更換電池');
