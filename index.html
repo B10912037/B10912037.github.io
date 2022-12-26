@@ -243,13 +243,13 @@
       //   document.querySelector('#toggle').classList.remove("btn-primary");
       // log('__╭☞ data received, new value is ' + value.getUint8(0));
       // console.log(value);
-      let v1=value.getUint8(0);
-      let v2=value.getUint8(1);
-      /*let battery=value.getUint8(1);
+      //let v1=value.getUint8(0);
+      //let v2=value.getUint8(1);
+      let battery=value.getUint8(1);
       let v1=value.getUint8(2);
       let v2=value.getUint8(3);
-      let va=v1+v2*0x100;*/
-      let battery = v1+v2*0x100;
+      let va=v1+v2*0x100;
+      //let battery = v1+v2*0x100;
       //Char1_data[2]=va;
       /*let v1=value.getUint8(0);
       let v2=value.getUint8(1);
@@ -257,7 +257,7 @@
       let v4=value.getUint8(3);
       va = v1+v2*0x100+v3*0x10000+v4*0x1000000*/
       //let volt = va / 4095 * 3.3;
-      document.querySelector('#adc').innerText = battery.toFixed(0) + "下";
+      document.querySelector('#adc').innerText = va.toFixed(0) + "下";
       //document.querySelector('#adc').innerText = volt.toFixed(2) + "V";
       // document.querySelector('#adc').classList.;
       if(va%10==0)
