@@ -214,9 +214,9 @@
       myCharacteristic.startNotifications()
         .then(_ => {
           log('notifications started');
-          /*document.querySelector('#notify').innerText = "Receiving";
+          //document.querySelector('#notify').innerText = "Receiving";
           document.querySelector('#notify').classList.add("disabled");
-          document.querySelector('#notify').classList.remove("btn-primary");*/
+          document.querySelector('#notify').classList.remove("btn-primary");
           notified = true;
           myCharacteristic.addEventListener('characteristicvaluechanged',
             handleNotifications);
@@ -275,13 +275,13 @@
         document.querySelector('#adc').classList.remove("btn-light");
         document.querySelector('#adc').classList.add("btn-secondary");
       }
-   /*   else if(va>=500 & va<1000)
+      else if(va>=500 & va<1000)
       {
         document.querySelector('#adc').classList.remove("btn-dark");
         document.querySelector('#adc').classList.remove("btn-secondary");
-        document.querySelector('#adc').classList.remove("btn-danger");
+        document.querySelector('#adc').classList.remove("btn-light");
         document.querySelector('#adc').classList.add("btn-warning");
-      }*/
+      }
       else
       {
         document.querySelector('#adc').classList.remove("btn-dark");
