@@ -244,7 +244,7 @@
       va = v1+v2*0x100+v3*0x10000+v4*0x1000000*/
       //let volt = va / 4095 * 3.3;
       document.querySelector('#adc').innerText = va.toFixed(0) + "下";
-      /*if(battery)
+      if(battery)
       {
         document.querySelector('#notify').innerText = "電量不足 請更換電池";
         document.querySelector('#notify').classList.remove("btn-success");
@@ -255,7 +255,7 @@
         document.querySelector('#notify').innerText = "電量充足";
         document.querySelector('#notify').classList.remove("btn-danger");
         document.querySelector('#notify').classList.add("btn-success");
-      }*/
+      }
       /*if(va%10==0)
       {
         if(battery)
@@ -320,7 +320,7 @@
         document.querySelector('#read').classList.remove("disabled");
         document.querySelector('#read').classList.add("btn-primary");
         document.querySelector('#adc').classList.remove("disabled");
-        //document.querySelector('#adc').classList.add("btn-info");
+        document.querySelector('#adc').classList.add("btn-info");
         document.querySelector('#state').innerText = "Connected";
         document.querySelector('#hint').innerText = "Hint: Press Send or Recive to communicate with BLE";
         // document.querySelector('#toggle').innerText = StatusValue;
