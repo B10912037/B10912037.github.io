@@ -69,14 +69,14 @@
           console.log(value);
           let va=value.getUint8(0);
           let battery=value.getUint8(1);     
-          if (battery)
+         /* if (battery)
           {
             log('電量不足 請更換電池');
           }
           else
           {
             log('電量充足 還可使用');
-          }
+          }*/
           //Char1_data[2]=va;
           /*let v3=value.getUint8(0);
           let v4=value.getUint8(1);
@@ -90,9 +90,22 @@
           return myCharacteristic.startNotifications();
         })
         .then(_ => {
-          document.querySelector('#notify').innerText = "Receiving";
+          /*document.querySelector('#notify').innerText = "Receiving";
           document.querySelector('#notify').classList.add("disabled");
-          document.querySelector('#notify').classList.remove("btn-primary");
+          document.querySelector('#notify').classList.remove("btn-primary");*/
+          let battery=value.getUint8(1);
+          if(battery)
+          {
+          document.querySelector('#notify').innerText = "電量不足 請更換電池";
+          document.querySelector('#notify').classList.remove("btn-success");
+          document.querySelector('#notify').classList.add("btn-danger");
+          }
+          else if(battery==0)
+          {
+            document.querySelector('#notify').innerText = "電量充足";
+            document.querySelector('#notify').classList.remove("btn-danger");
+            document.querySelector('#notify').classList.add("btn-success");
+          }
           notified = true;
           myCharacteristic.addEventListener('characteristicvaluechanged',
             handleNotifications);
@@ -143,25 +156,6 @@
         document.querySelector('#toggle').classList.add("btn-primary");
       else
         document.querySelector('#toggle').classList.remove("btn-primary");
-
-      _send();
-    }
-
-    function _send() {
-      if (!connected)
-        return;
-      //let v = Uint8Array.of(document.querySelector('#input').value);
-      //let v = document.getElementById("input")
-      var v = Uint8Array.of(7);
-      myCharacteristic.writeValue(v)
-      //var v = Uint8Array.of(0);
-      //Characteristic.writeValue(v)
-        .then(_ => {
-          log('☜╮__ data transmitted, now value is ' + StatusValue);
-        })
-        .catch(error => {
-          log(error);
-        });
     }
 
     function _show() {
@@ -213,7 +207,7 @@
         });
     }
 
-    function _notify() {
+  /*  function _notify() {
       if (!connected)
         return;
 
@@ -231,18 +225,10 @@
           log(error);
         });
       _update();
-    }
+    }*/
 
     function handleNotifications(event) {
       let value = event.target.value;
-      // StatusValue = value.getUint8(0);
-      // document.querySelector('#toggle').innerText = StatusValue;
-      // if (StatusValue)
-      //   document.querySelector('#toggle').classList.add("btn-primary");
-      // else
-      //   document.querySelector('#toggle').classList.remove("btn-primary");
-      // log('__╭☞ data received, new value is ' + value.getUint8(0));
-      // console.log(value);
       /*let v1=value.getUint8(0);
       let v2=value.getUint8(1);
       let battery = v1+v2*0x100;*/
@@ -258,42 +244,50 @@
       va = v1+v2*0x100+v3*0x10000+v4*0x1000000*/
       //let volt = va / 4095 * 3.3;
       document.querySelector('#adc').innerText = va.toFixed(0) + "下";
-      //document.querySelector('#adc').innerText = volt.toFixed(2) + "V";
-      // document.querySelector('#adc').classList.;
-      if(va%10==0)
+      if(battery)
+      {
+        document.querySelector('#notify').innerText = "電量不足 請更換電池";
+        document.querySelector('#notify').classList.remove("btn-success");
+        document.querySelector('#notify').classList.add("btn-danger");
+      }
+      else if(battery==0)
+      {
+        document.querySelector('#notify').innerText = "電量充足";
+        document.querySelector('#notify').classList.remove("btn-danger");
+        document.querySelector('#notify').classList.add("btn-success");
+      }
+      /*if(va%10==0)
       {
         if(battery)
           log('電量不足 請更換電池');
-       /* else if (battery==2)
-          log('電量極度不足 請迅速更換電池');*/
-      }
+      }*/
       if(va<100)
       {
-        document.querySelector('#adc').classList.remove("btn-info");
+        document.querySelector('#adc').classList.remove("btn-secondary");
         document.querySelector('#adc').classList.remove("btn-warning");
-        document.querySelector('#adc').classList.remove("btn-danger");
-        document.querySelector('#adc').classList.add("btn-success");
+        document.querySelector('#adc').classList.remove("btn-light");
+        document.querySelector('#adc').classList.add("btn-dark");
       }
       else if(va>=100 & va<500)
       {
-        document.querySelector('#adc').classList.remove("btn-success");
+        document.querySelector('#adc').classList.remove("btn-dark");
         document.querySelector('#adc').classList.remove("btn-warning");
-        document.querySelector('#adc').classList.remove("btn-danger");
-        document.querySelector('#adc').classList.add("btn-info");
+        document.querySelector('#adc').classList.remove("btn-light");
+        document.querySelector('#adc').classList.add("btn-secondary");
       }
-      else if(va>=500 & va<1000)
+   /*   else if(va>=500 & va<1000)
       {
-        document.querySelector('#adc').classList.remove("btn-success");
-        document.querySelector('#adc').classList.remove("btn-info");
+        document.querySelector('#adc').classList.remove("btn-dark");
+        document.querySelector('#adc').classList.remove("btn-secondary");
         document.querySelector('#adc').classList.remove("btn-danger");
         document.querySelector('#adc').classList.add("btn-warning");
-      }
+      }*/
       else
       {
-        document.querySelector('#adc').classList.remove("btn-success");
-        document.querySelector('#adc').classList.remove("btn-info");
+        document.querySelector('#adc').classList.remove("btn-dark");
+        document.querySelector('#adc').classList.remove("btn-secondary");
         document.querySelector('#adc').classList.remove("btn-warning");
-        document.querySelector('#adc').classList.add("btn-danger");
+        document.querySelector('#adc').classList.add("btn-light");
       }
     }
 
@@ -326,7 +320,7 @@
         document.querySelector('#read').classList.remove("disabled");
         document.querySelector('#read').classList.add("btn-primary");
         document.querySelector('#adc').classList.remove("disabled");
-        document.querySelector('#adc').classList.add("btn-info");
+        //document.querySelector('#adc').classList.add("btn-info");
         document.querySelector('#state').innerText = "Connected";
         document.querySelector('#hint').innerText = "Hint: Press Send or Recive to communicate with BLE";
         // document.querySelector('#toggle').innerText = StatusValue;
@@ -350,7 +344,8 @@
         // document.querySelector('#toggle').classList.remove("btn-primary");
         document.querySelector('#notify').classList.add("disabled");
         document.querySelector('#notify').classList.remove("btn-primary");
-        document.querySelector('#notify').innerText = "Not Receiving";
+        document.querySelector('#notify').innerText = "電量";
+        //document.querySelector('#notify').innerText = "Not Receiving";
         //$('input').attr('readonly', true);
         $('input').attr('value', '');
         document.querySelector('#show').classList.add("disabled");
@@ -384,7 +379,7 @@
       <div class="col-sm-3">
         <button id='connect' type="button" class="btn btn-lg btn-block">Connect</button>
         <br>
-        <button id='notify' type="button" class="btn btn-lg btn-block">Not Recieving</button>
+        <button id='notify' type="button" class="btn btn-lg btn-block">電量</button>
         <br>
         <button id='adc' type="button" class="btn btn-lg btn-block">計數</button>
         <br>
@@ -397,8 +392,6 @@
         <button id='toggle' type="button" class="btn btn-lg btn-block">Value</button>
         <br>
         <button id='install' type="button" class="btn btn-lg btn-outline-light btn-block">Install</button>
-        <!-- <br>
-        <button id='send' type="button" class="btn btn-block">Send</button> -->
       </div>
       <div class="col-sm-9">
         <h4 id='state'></h4>
