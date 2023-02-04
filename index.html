@@ -94,7 +94,7 @@
           document.querySelector('#notify').classList.add("disabled");
           document.querySelector('#notify').classList.remove("btn-primary");*/
           let battery=value.getUint8(1);
-         /* if(battery)
+          if(battery)
           {
           document.querySelector('#notify').innerText = "電量不足 請更換電池";
           document.querySelector('#notify').classList.remove("btn-success");
@@ -105,7 +105,7 @@
             document.querySelector('#notify').innerText = "電量充足";
             document.querySelector('#notify').classList.remove("btn-danger");
             document.querySelector('#notify').classList.add("btn-success");
-          }*/
+          }
           notified = true;
           myCharacteristic.addEventListener('characteristicvaluechanged',
             handleNotifications);
@@ -207,16 +207,16 @@
         });
     }
 
-  /*  function _notify() {
+    function _notify() {
       if (!connected)
         return;
 
       myCharacteristic.startNotifications()
         .then(_ => {
-          log('notifications started');
+       /*   log('notifications started');
           document.querySelector('#notify').innerText = "Receiving";
           document.querySelector('#notify').classList.add("disabled");
-          document.querySelector('#notify').classList.remove("btn-primary");
+          document.querySelector('#notify').classList.remove("btn-primary");*/
           notified = true;
           myCharacteristic.addEventListener('characteristicvaluechanged',
             handleNotifications);
@@ -225,7 +225,7 @@
           log(error);
         });
       _update();
-    }*/
+    }
 
     function handleNotifications(event) {
       let value = event.target.value;
