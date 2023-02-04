@@ -69,14 +69,14 @@
           console.log(value);
           let va=value.getUint8(0);
           let battery=value.getUint8(1);     
-         /* if (battery)
+          if (battery)
           {
             log('電量不足 請更換電池');
           }
           else
           {
             log('電量充足 還可使用');
-          }*/
+          }
           //Char1_data[2]=va;
           /*let v3=value.getUint8(0);
           let v4=value.getUint8(1);
@@ -214,9 +214,9 @@
       myCharacteristic.startNotifications()
         .then(_ => {
           log('notifications started');
-          document.querySelector('#notify').innerText = "Receiving";
+          /*document.querySelector('#notify').innerText = "Receiving";
           document.querySelector('#notify').classList.add("disabled");
-          document.querySelector('#notify').classList.remove("btn-primary");
+          document.querySelector('#notify').classList.remove("btn-primary");*/
           notified = true;
           myCharacteristic.addEventListener('characteristicvaluechanged',
             handleNotifications);
@@ -266,7 +266,8 @@
         document.querySelector('#adc').classList.remove("btn-secondary");
         document.querySelector('#adc').classList.remove("btn-warning");
         document.querySelector('#adc').classList.remove("btn-light");
-        document.querySelector('#adc').classList.add("btn-dark");
+        document.querySelector('#adc').classList.add("btn-light");
+        //document.querySelector('#adc').classList.add("btn-dark");
       }
       else if(va>=100 & va<500)
       {
