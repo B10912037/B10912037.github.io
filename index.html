@@ -273,6 +273,8 @@
         document.querySelector('#adc').classList.remove("btn-warning");
         document.querySelector('#adc').classList.remove("btn-danger");
         document.querySelector('#adc').classList.add("btn-dark");
+        var dog = document.getElementById("dog");
+        dog.setAttribute ('src','icon.png');
       }
       else if(va>=100 & va<500)
       {
@@ -380,7 +382,8 @@
                   height="127">
       <img src="dog1.png"
                   width="150"
-                  height="127">
+                  height="127" 
+                  id = "dog">
       <script src="js/jquery.min.js"></script>
       <script src="js/main.js"></script>
     </div>
