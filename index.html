@@ -186,8 +186,8 @@
       
         .then(_ => {
           log('☜╮__ 數據更新, 目前壓力閥值為 ' + v);
-          if(v>90 || v<1)
-            log('請輸入1~90');
+          if(v>9 || v<0)
+            log('請輸入0~9');
         })
         .catch(error => {
           console.log(error);
@@ -264,10 +264,8 @@
       {
         if(battery)
           log('電量不足 請更換電池');
-       /* else if (battery==2)
-          log('電量極度不足 請迅速更換電池');*/
       }
-      if(va<100)
+      if(va<50)
       {
         document.querySelector('#adc').classList.remove("btn-info");
         document.querySelector('#adc').classList.remove("btn-warning");
@@ -276,14 +274,21 @@
         var dog = document.getElementById("dog");
         dog.setAttribute ('src','icon.png');
       }
-      else if(va>=100 & va<500)
+      else if(va>=50 & va<100)
       {
         document.querySelector('#adc').classList.remove("btn-success");
         document.querySelector('#adc').classList.remove("btn-warning");
         document.querySelector('#adc').classList.remove("btn-danger");
         document.querySelector('#adc').classList.add("btn-info");
       }
-      else if(va>=500 & va<1000)
+      else if(va>=150 & va<200)
+      {
+        document.querySelector('#adc').classList.remove("btn-success");
+        document.querySelector('#adc').classList.remove("btn-info");
+        document.querySelector('#adc').classList.remove("btn-danger");
+        document.querySelector('#adc').classList.add("btn-warning");
+      }
+      else if(va>=200 & va<250)
       {
         document.querySelector('#adc').classList.remove("btn-success");
         document.querySelector('#adc').classList.remove("btn-info");
@@ -395,7 +400,7 @@
         <br>
         <button id='adc' type="button" class="btn btn-lg btn-block">計數</button>
         <br>
-        <input  id="input" type="text" class="form-control" value=10 placeholder="輸入 1~90" >
+        <input  id="input" type="text" class="form-control" value=10 placeholder="輸入 0~9" >
         <br>
         <button id='show' type="button" class="btn btn-lg btn-block">設定閥值</button>
         <br>
