@@ -263,93 +263,63 @@
         document.querySelector('#notify').classList.add("btn-success");
         document.querySelector('#notify').innerText = "電量充足";
       }
-      if(va<50)
+      if(va<10)
       {  
-        document.querySelector('#adc').classList.remove("btn-info");
-        document.querySelector('#adc').classList.remove("btn-warning");
-        document.querySelector('#adc').classList.remove("btn-danger");
-        document.querySelector('#adc').classList.add("btn-dark");
+        document.querySelector('#adc').classList.add("btn-warning");
         var dog = document.getElementById("dog");
         dog.setAttribute ('src','dog11.png');
       }
-      else if(va>=50 & va<100)
+      else if(va>=10 & va<20)
       {
-        document.querySelector('#adc').classList.remove("btn-success");
-        document.querySelector('#adc').classList.remove("btn-warning");
-        document.querySelector('#adc').classList.remove("btn-danger");
-        document.querySelector('#adc').classList.add("btn-info");
+        document.querySelector('#adc').classList.add("btn-warning");
         var dog = document.getElementById("dog");
         dog.setAttribute ('src','dog2.png');
       }
-      else if(va>=100 & va<150)
+      else if(va>=20 & va<30)
       {
-        document.querySelector('#adc').classList.remove("btn-success");
-        document.querySelector('#adc').classList.remove("btn-info");
-        document.querySelector('#adc').classList.remove("btn-danger");
         document.querySelector('#adc').classList.add("btn-warning");
         var dog = document.getElementById("dog");
         dog.setAttribute ('src','dog3.png');
       }
-      else if(va>=150 & va<200)
+      else if(va>=30 & va<40)
       {
-        document.querySelector('#adc').classList.remove("btn-success");
-        document.querySelector('#adc').classList.remove("btn-info");
-        document.querySelector('#adc').classList.remove("btn-danger");
         document.querySelector('#adc').classList.add("btn-warning");
         var dog = document.getElementById("dog");
         dog.setAttribute ('src','dog4.png');
       }
-      else if(va>=200 & va<250)
+      else if(va>=40 & va<50)
       {
-        document.querySelector('#adc').classList.remove("btn-success");
-        document.querySelector('#adc').classList.remove("btn-info");
-        document.querySelector('#adc').classList.remove("btn-danger");
         document.querySelector('#adc').classList.add("btn-warning");
         var dog = document.getElementById("dog");
         dog.setAttribute ('src','dog5.png');
       }
-      else if(va>=250 & va<300)
+      else if(va>=50 & va<60)
       {
-        document.querySelector('#adc').classList.remove("btn-success");
-        document.querySelector('#adc').classList.remove("btn-info");
-        document.querySelector('#adc').classList.remove("btn-danger");
         document.querySelector('#adc').classList.add("btn-warning");
         var dog = document.getElementById("dog");
         dog.setAttribute ('src','dog6.png');
       }
-      else if(va>=300 & va<350)
+      else if(va>=60 & va<70)
       {
-        document.querySelector('#adc').classList.remove("btn-success");
-        document.querySelector('#adc').classList.remove("btn-info");
-        document.querySelector('#adc').classList.remove("btn-danger");
         document.querySelector('#adc').classList.add("btn-warning");
         var dog = document.getElementById("dog");
         dog.setAttribute ('src','dog7.png');
       }
-      else if(va>=350 & va<400)
+      else if(va>=70 & va<80)
       {
-        document.querySelector('#adc').classList.remove("btn-success");
-        document.querySelector('#adc').classList.remove("btn-info");
-        document.querySelector('#adc').classList.remove("btn-danger");
         document.querySelector('#adc').classList.add("btn-warning");
         var dog = document.getElementById("dog");
         dog.setAttribute ('src','dog8.png');
       }
       else if(va>=400 & va<450)
       {
-        document.querySelector('#adc').classList.remove("btn-success");
-        document.querySelector('#adc').classList.remove("btn-info");
-        document.querySelector('#adc').classList.remove("btn-danger");
         document.querySelector('#adc').classList.add("btn-warning");
         var dog = document.getElementById("dog");
         dog.setAttribute ('src','dog9.png');
       }
       else
       {
-        document.querySelector('#adc').classList.remove("btn-success");
-        document.querySelector('#adc').classList.remove("btn-info");
-        document.querySelector('#adc').classList.remove("btn-warning");
-        document.querySelector('#adc').classList.add("btn-danger");
+        document.querySelector('#adc').classList.add("btn-warning");
       }
     }
 
@@ -423,7 +393,7 @@
 </head>
 <center>
 <body onload='_update()'> 
-<div style="background-image:url(綠1.png)">
+<div style="background-image:url(背景圖.png)">
   <div class="container">
     <div class="page-header">
       <!-- for Web Apk -->
