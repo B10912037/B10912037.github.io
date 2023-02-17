@@ -72,10 +72,16 @@
           if (battery)
           {
             log('電量不足 請更換電池');
+            document.querySelector('#notify').classList.remove("btn-success");
+            document.querySelector('#notify').classList.add("btn-danger");
+            document.querySelector('#notify').innerText = "電量不足";
           }
           else
           {
             log('電量充足 還可使用');
+            document.querySelector('#notify').classList.remove("btn-danger");
+            document.querySelector('#notify').classList.add("btn-success");
+            document.querySelector('#notify').innerText = "電量充足";
           }
           //Char1_data[2]=va;
           /*let v3=value.getUint8(0);
@@ -90,8 +96,8 @@
           return myCharacteristic.startNotifications();
         })
         .then(_ => {
-          document.querySelector('#notify').innerText = "Receiving";
-          document.querySelector('#notify').classList.add("disabled");
+          //document.querySelector('#notify').innerText = "Receiving";
+          //document.querySelector('#notify').classList.add("disabled");
           document.querySelector('#notify').classList.remove("btn-primary");
           notified = true;
           myCharacteristic.addEventListener('characteristicvaluechanged',
@@ -176,10 +182,6 @@
       var buffer = new ArrayBuffer(2);
       var view   = new Int8Array(buffer);
       view[0] = Char1_data[0];*/
-      //let arr2 = new Unit8Array(2).buffer;
-      //let arr2 = new Uint16Array(2);
-      //arr2[0]=Char1_data[0];
-      //console.log(arrayBuf);
       myCharacteristic.writeValue(v)
       //Characteristic.writeValueWithResponse(arr2)
       
@@ -220,7 +222,7 @@
       myCharacteristic.startNotifications()
         .then(_ => {
           log('notifications started');
-          document.querySelector('#notify').innerText = "Receiving";
+          document.querySelector('#notify').innerText = "電量";
           document.querySelector('#notify').classList.add("disabled");
           document.querySelector('#notify').classList.remove("btn-primary");
           notified = true;
@@ -235,14 +237,6 @@
 
     function handleNotifications(event) {
       let value = event.target.value;
-      // StatusValue = value.getUint8(0);
-      // document.querySelector('#toggle').innerText = StatusValue;
-      // if (StatusValue)
-      //   document.querySelector('#toggle').classList.add("btn-primary");
-      // else
-      //   document.querySelector('#toggle').classList.remove("btn-primary");
-      // log('__╭☞ data received, new value is ' + value.getUint8(0));
-      // console.log(value);
       /*let v1=value.getUint8(0);
       let v2=value.getUint8(1);
       let battery = v1+v2*0x100;*/
@@ -256,17 +250,21 @@
       let v3=value.getUint8(2);
       let v4=value.getUint8(3);
       va = v1+v2*0x100+v3*0x10000+v4*0x1000000*/
-      //let volt = va / 4095 * 3.3;
       document.querySelector('#adc').innerText = va.toFixed(0) + "下";
-      //document.querySelector('#adc').innerText = volt.toFixed(2) + "V";
-      // document.querySelector('#adc').classList.;
-      if(va%10==0)
+      if (battery)
       {
-        if(battery)
-          log('電量不足 請更換電池');
+        document.querySelector('#notify').classList.remove("btn-success");
+        document.querySelector('#notify').classList.add("btn-danger");
+        document.querySelector('#notify').innerText = "電量不足";
+      }
+      else
+      {
+        document.querySelector('#notify').classList.remove("btn-danger");
+        document.querySelector('#notify').classList.add("btn-success");
+        document.querySelector('#notify').innerText = "電量充足";
       }
       if(va<50)
-      {
+      {  
         document.querySelector('#adc').classList.remove("btn-info");
         document.querySelector('#adc').classList.remove("btn-warning");
         document.querySelector('#adc').classList.remove("btn-danger");
@@ -408,7 +406,7 @@
         // document.querySelector('#toggle').classList.remove("btn-primary");
         document.querySelector('#notify').classList.add("disabled");
         document.querySelector('#notify').classList.remove("btn-primary");
-        document.querySelector('#notify').innerText = "Not Receiving";
+        document.querySelector('#notify').innerText = "電量";
         //$('input').attr('readonly', true);
         $('input').attr('value', '');
         document.querySelector('#show').classList.add("disabled");
@@ -447,7 +445,7 @@
       <div class="col-sm-3">
         <button id='connect' type="button" class="btn btn-lg btn-block">Connect</button>
         <br>
-        <button id='notify' type="button" class="btn btn-lg btn-block">Not Recieving</button>
+        <button id='notify' type="button" class="btn btn-lg btn-block">電量</button>
         <br>
         <button id='adc' type="button" class="btn btn-lg btn-block">計數</button>
         <br>
